@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="modelingtools",
-    version="0.0.1",
+    version="0.0.2",
     author="Jeremy Miller",
     author_email="jeremymiller00@gmail.com",
     description="Tools to make modeling easier - Work in progress",
