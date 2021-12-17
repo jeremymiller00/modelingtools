@@ -1,13 +1,33 @@
+from ctypes import ArgumentError
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve, roc_auc_score, precision_recall_curve, average_precision_score
 from sklearn.linear_model import LogisticRegression
 
-from .trainingtools import loo_cv, values_from_dataframe
+from modelingtools.trainingtools import loo_cv
 
 
 def error_decomposition(y_true, y_pred_train, y_pred_test, scoring_function, unavoidable_error=0.0):
+    """
+    Create a pandas dataframe of the error decomposition values
+    Unavoidable error sometimes represent human performance
+    Underfitting: difference between train score and best score possible with unavoidable error
+    Overfitting: how much worse is test than train
+
+    @param: y_true - ground truth
+    @type: array like
+    @param: y_pred_train - predictions on training data
+    @type: array like
+    @param: y_true - predictions on test data
+    @type: array like
+    @param: scoring_function - a function that takes (y_true, y_pred) and returns a single float
+    @type: func
+    @param: unavoidable_error - error if our model is a good as possible under the circumstances
+    @type: float
+    """
+    if not hasattr(scoring_function, '__call__'):
+        raise ArgumentError(f"Scoring function must be type function, but was {type(scoring_function)}")
     train_score = scoring_function(y_true, y_pred_train)
     test_score = scoring_function(y_true, y_pred_test)
     errors = [unavoidable_error, 1 - train_score - unavoidable_error, 1 - train_score,
