@@ -2,9 +2,6 @@ from ctypes import ArgumentError
 import unittest
 import numpy as np
 import pandas as pd
-import statsmodels
-import statsmodels.api as sm
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score
 from modelingtools import evaluationtools as et
 
