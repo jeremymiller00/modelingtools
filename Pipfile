@@ -9,7 +9,6 @@ pandas = "*"
 scikit-learn = "*"
 statsmodels = "*"
 matplotlib = "*"
-pytest = "*"
 
 [dev-packages]
 
