@@ -14,7 +14,7 @@ The most common use case is when the metric of interest is a measure of K succes
 Sample usage:
 
 ```python
-from modeltools.testingtools import BayesianABTesting  
+from modelingtools.testingtools import BayesianABTesting  
 data = {  
   "a_trials": 1000,
   "a_successes": 100,
